@@ -1,1 +1,79 @@
-NUMBER i EQ 5
+#ONTORVUKTO LT stdio DOT h GT
+
+SLASH_SLASH addFunction
+NUMBER add LP NUMBER a COMA NUMBER b RP
+LB
+FEROT  a JOG b$ 
+RB
+
+SLASH_SLASH subtractionFunction
+NUMBER minus LP NUMBER a COMA NUMBER b RP
+LB
+FEROT  a BIYOG b$ 
+RB
+
+SLASH_SLASH multiplicationFunction
+NUMBER gun LP NUMBER a COMA NUMBER b RP
+LB
+FEROT  a GUN b$ 
+RB
+
+SLASH_SLASH divisionFunction
+NUMBER vag LP NUMBER a COMA NUMBER b RP
+LB
+FEROT  a VAG b$ 
+RB
+
+
+NUMBER main LP RP
+LB
+
+SLASH_SLASH findLargeNumber 
+
+NUMBER a EQ 5 COMA b EQ 6$
+
+SHORTO LP a GOE b RP
+LB
+    DISPLAY LP QT a  is  greater  than  b QT RP$
+RB
+LAST SHORTO
+    DISPLAY LP QT b  is  greater  than  a QT RP$
+
+SLASH_SLASH matchingLoop
+
+Loop LP i EQ 0$ i LOE n$ i BARAU RP
+
+LB
+   DISPLAY LP QT for QT RP$
+RB
+
+SLASH_SLASH matchingWhile
+
+JOKHON LP i LOE n RP
+LB
+   DISPLAY LP QT while QT RP$
+RB
+
+SLASH_SLASH matchingSwitch
+
+NUMBER l EQ 2$
+
+OPTION LP l RP
+LB
+
+CHOICE  1 @
+    DISPLAY LP QT one QT RP$
+JEKONO @
+    DISPLAY LP QT invalid QT RP$
+RB
+
+SLASH_SLASH AddTwoNumberFunction
+
+add LP 5 COMA 6 RP $
+minus LP 5 COMA 6 RP $
+gun LP 5 COMA 6 RP $
+vag LP 5 COMA 6 RP $
+
+
+FEROT  0$
+RB

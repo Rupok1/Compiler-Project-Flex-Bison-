@@ -1,0 +1,79 @@
+#include<stdio.h>
+
+//addFunction
+int add(int a,int b)
+{
+return a+b;
+}
+
+//subtractionFunction
+int minus(int a,int b)
+{
+return a-b;
+}
+
+//multiplicationFunction
+int gun(int a,int b)
+{
+return a*b;
+}
+
+//divisionFunction
+int vag(int a,int b)
+{
+return a/b;
+}
+
+
+int main()
+{
+
+//findLargeNumber
+
+int a=5,b=6;
+
+if (a>=b)
+{
+  printf("a is greater than b");
+}
+else 
+  printf("b is greater than a");
+
+//matchingLoop
+
+for loop matched
+
+{
+ printf("for");
+}
+
+//matchingWhile
+
+while loop matched
+{
+ printf("while");
+}
+
+//matchingSwitch
+
+int l=2;
+
+switch(l)
+{
+
+case 1:
+  printf("one");
+default:
+  printf("invalid");
+}
+
+//AddTwoNumberFunction
+
+add(5,6);
+minus(5,6);
+gun(5,6);
+vag(5,6);
+
+
+return 0;
+}

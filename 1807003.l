@@ -2,7 +2,11 @@ alpha [a-zA-Z]
 digit [0-9]
 var [a-z|A-Z]+[0-9]*
 condition (LT|GT|LOE|GOE|NOT|EQ|TWO_EQ|NOT_EQ)
+types ("NUMBER"|"DECIMAL"|"ALPHABET"|"DUPLICATE"|"LONG")
+singleLineComment 	SLASH_SLASH
 multipleLineComment LT[ ]DASH[ ]DASH[ ]({var}|[ ]|"\n")*NOT[ ]DASH[ ]GT
+
+
 
 %%
 "#ONTORVUKTO" 			{printf("#include");}
@@ -11,16 +15,17 @@ multipleLineComment LT[ ]DASH[ ]DASH[ ]({var}|[ ]|"\n")*NOT[ ]DASH[ ]GT
 
 "ALPHABET"				{printf("character ");}
 "NUMBER"				{printf("int ");}
-"VOGNANGSHO"			{printf("float ");}
+"DECIMAL"				{printf("float ");}
 "DUPLICATE"				{printf("double ");}
 "LONG"					{printf("long ");}
+
 "SHORTO"				{printf("if ");}
 "ABAR SHORTO"			{printf("else if ");}
 "LAST SHORTO"			{printf("else ");}
 
-"JOKHON"[ ]"LP"[ ]{var}[ ]{condition}[ ]{digit}+[ ]"RP"																{printf("while ");}
-"KORO"[ ]"LB"[ ]"RB"[ ]"JOKHON"[ ]"LP"[ ]{var}[ ]{condition}[ ]{digit}+[ ]"RP" 										{printf("do while loop");}
-"Loop"[ ]"LP"[ ]{var}[ ]"EQ"[ ]{digit}+"$"[ ]{var}[ ]{condition}[ ]{digit}+"$"[ ]{var}[ ]("BARAU"|"KOMAU")[ ]"RP" 	{printf("for ");}
+"JOKHON"[ ]"LP"[ ]{var}[ ]{condition}[ ]({digit}+|{var})[ ]"RP"																{printf("while loop matched");}
+"KORO"[ ]"LB"[ ]"RB"[ ]"JOKHON"[ ]"LP"[ ]{var}[ ]{condition}[ ]({digit}+|{var})[ ]"RP" 										{printf("do while loop matched");}
+"Loop"[ ]"LP"[ ]{var}[ ]"EQ"[ ]{digit}"$"[ ]{var}[ ]{condition}[ ]({digit}+|{var})"$"[ ]{var}[ ]("BARAU"|"KOMAU")[ ]"RP" 	{printf("for loop matched");}
 
 "GOE"					{printf(">=");}
 "LOE"					{printf("<=");}
@@ -36,6 +41,10 @@ multipleLineComment LT[ ]DASH[ ]DASH[ ]({var}|[ ]|"\n")*NOT[ ]DASH[ ]GT
 "$"						{printf(";");}
 "@"						{printf(":");}
 "DASH"					{printf("-");}
+"DOT"					{printf(".");}
+"COMA"					{printf(",");}
+"QT"					{printf("\"");} 
+"SLASH_SLASH"			{printf("//");} 
 
 "NOT"					{printf("!");}
 "OR"					{printf("|");}
@@ -59,12 +68,15 @@ multipleLineComment LT[ ]DASH[ ]DASH[ ]({var}|[ ]|"\n")*NOT[ ]DASH[ ]GT
 "OPTION" 				{printf("switch");}
 "READ" 				    {printf("scanf");}
 "DISPLAY" 				{printf("printf");}
-
+"JEKONO" 				{printf("default");}
 
 
 {var}					{printf("%s",yytext);}
 {digit}					{printf("%s",yytext);}
 {multipleLineComment}   {printf("multipleLineComment");}
+
+"/t"					{printf("	");}
+"  "					{printf(" ");} 
 .
 %%
 
