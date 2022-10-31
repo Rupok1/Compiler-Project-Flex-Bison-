@@ -1,78 +1,81 @@
-#ONTORVUKTO LT stdio DOT h GT
+#ONTORVUKTO LT stdio.h GT
 
-SLASH_SLASH addFunction
-NUMBER add LP NUMBER a COMA NUMBER b RP
-LB
-FEROT  a JOG b$ 
-RB
+SLASH_SLASH voidFunctionWithoutParameter
+FUN KHALI func1 LP RP
 
-SLASH_SLASH subtractionFunction
-NUMBER minus LP NUMBER a COMA NUMBER b RP
-LB
-FEROT  a BIYOG b$ 
-RB
+SLASH_SLASH voidFunctionWithParameter
+FUN KHALI func2 LP NUMBER a RP
 
-SLASH_SLASH multiplicationFunction
-NUMBER gun LP NUMBER a COMA NUMBER b RP
-LB
-FEROT  a GUN b$ 
-RB
+SLASH_SLASH DecimalTypeFunctionWithParameter
+FUN DECIMAL func3 LP NUMBER a RP
 
-SLASH_SLASH divisionFunction
-NUMBER vag LP NUMBER a COMA NUMBER b RP
-LB
-FEROT  a VAG b$ 
-RB
+SLASH_SLASH NumberTypeFunctionWithoutParameter
+FUN NUMBER func4 LP RP
 
 
-NUMBER main LP RP
+
+FUN DECIMAL d LP NUMBER a RP
+
+SHURU_KORLAM
 LB
 
-SLASH_SLASH findLargeNumber 
-
+SLASH_SLASH checkingVariableDeclaration
 NUMBER a EQ 5 COMA b EQ 6$
 
-SHORTO LP a GOE b RP
-LB
-    DISPLAY LP QT a  is  greater  than  b QT RP$
-RB
-LAST SHORTO
-    DISPLAY LP QT b  is  greater  than  a QT RP$
+SLASH_SLASH logicalConditionChecking
+SHORTO LP i EQ 5 RP
+ABAR_SHORTO LP i EQ 5 RP
+LAST_SHORTO 
+
+SLASH_SLASH checkingArrayDeclaration
+NUMBER a[100]$
+ALPHABET abc[15]$
 
 SLASH_SLASH matchingLoop
-
 Loop LP i EQ 0$ i LOE n$ i BARAU RP
 
-LB
-   DISPLAY LP QT for QT RP$
-RB
-
 SLASH_SLASH matchingWhile
-
 JOKHON LP i LOE n RP
-LB
-   DISPLAY LP QT while QT RP$
+
+<--multiLine 
+comment
+!->
+
+SLASH_SLASH switchChecked
+OPTION LP 5 RP LB
+CHOICE 1@
+BER_HOU$
+CHOICE 2@
+BER_HOU$
 RB
 
-SLASH_SLASH matchingSwitch
+SLASH_SLASH assignmentChecking
+NUMBER a EQ 56$
 
-NUMBER l EQ 2$
 
-OPTION LP l RP
-LB
+SLASH_SLASH equalityChecking
+a TWO_EQ b$
 
-CHOICE  1 @
-    DISPLAY LP QT one QT RP$
-JEKONO @
-    DISPLAY LP QT invalid QT RP$
-RB
+SLASH_SLASH greaterOrEqualThanChecking
+a GOE c$
 
-SLASH_SLASH AddTwoNumberFunction
+SLASH_SLASH lessOrEqualThanChecking
+a LOE c$
 
-add LP 5 COMA 6 RP $
-minus LP 5 COMA 6 RP $
-gun LP 5 COMA 6 RP $
-vag LP 5 COMA 6 RP $
+SLASH_SLASH greaterThanChecking
+a GT c$
+
+SLASH_SLASH lessThanChecking
+a LT c$
+
+SLASH_SLASH InequalityChecking
+a NOT_EQ c$
+
+SLASH_SLASH trigonometryOPChecking
+sn LP x RP
+kos LP y RP
+tng LP 56 RP
+
 
 
 FEROT  0$

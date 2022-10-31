@@ -1,79 +1,89 @@
-#include<stdio.h>
+include header file
 
-//addFunction
-int add(int a,int b)
-{
-return a+b;
-}
+single_line_comment voidFunctionWithoutParameter
+function declared
 
-//subtractionFunction
-int minus(int a,int b)
-{
-return a-b;
-}
+single_line_comment voidFunctionWithParameter
+function declared
 
-//multiplicationFunction
-int gun(int a,int b)
-{
-return a*b;
-}
+single_line_comment DecimalTypeFunctionWithParameter
+function declared
 
-//divisionFunction
-int vag(int a,int b)
-{
-return a/b;
-}
+single_line_comment NumberTypeFunctionWithoutParameter
+function declared
 
 
-int main()
-{
 
-//findLargeNumber
+function declared
 
-int a=5,b=6;
+main function start
+open braces 
 
-if (a>=b)
-{
-  printf("a is greater than b");
-}
-else 
-  printf("b is greater than a");
 
-//matchingLoop
+single_line_comment checkingVariableDeclaration
+variable declared 
 
+
+single_line_comment logicalConditionChecking
+if else key checked 
+
+if else key checked 
+
+if else key checked 
+
+
+single_line_comment checkingArrayDeclaration
+array declared
+array declared
+
+single_line_comment matchingLoop
 for loop matched
 
-{
- printf("for");
-}
-
-//matchingWhile
-
+single_line_comment matchingWhile
 while loop matched
-{
- printf("while");
-}
 
-//matchingSwitch
+comment_start
+multiLine 
+comment
+comment_end
 
-int l=2;
+single_line_comment switchChecked
+switch declared
+switch case
 
-switch(l)
-{
-
-case 1:
-  printf("one");
-default:
-  printf("invalid");
-}
-
-//AddTwoNumberFunction
-
-add(5,6);
-minus(5,6);
-gun(5,6);
-vag(5,6);
+single_line_comment assignmentChecking
+assignment checked
 
 
-return 0;
-}
+single_line_comment equalityChecking
+equality checked
+
+single_line_comment greaterOrEqualThanChecking
+greater than or equal checked
+
+single_line_comment lessOrEqualThanChecking
+less than or equal checked
+
+single_line_comment greaterThanChecking
+greater than checked
+
+single_line_comment lessThanChecking
+less than checked
+
+single_line_comment InequalityChecking
+INequality checked
+
+single_line_comment trigonometryOPChecking
+sine checked 
+
+cosine checked 
+
+tan checked 
+
+
+
+
+return value eof 
+
+close braces 
+
