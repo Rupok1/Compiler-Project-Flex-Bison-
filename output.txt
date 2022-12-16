@@ -1,89 +1,93 @@
-include header file
-
-single_line_comment voidFunctionWithoutParameter
-function declared
-
-single_line_comment voidFunctionWithParameter
-function declared
-
-single_line_comment DecimalTypeFunctionWithParameter
-function declared
-
-single_line_comment NumberTypeFunctionWithoutParameter
-function declared
-
-
-
-function declared
-
-main function start
-open braces 
-
-
-single_line_comment checkingVariableDeclaration
-variable declared 
-
-
-single_line_comment logicalConditionChecking
-if else key checked 
-
-if else key checked 
-
-if else key checked 
-
-
-single_line_comment checkingArrayDeclaration
-array declared
-array declared
-
-single_line_comment matchingLoop
-for loop matched
-
-single_line_comment matchingWhile
-while loop matched
-
-comment_start
-multiLine 
-comment
-comment_end
-
-single_line_comment switchChecked
-switch declared
-switch case
-
-single_line_comment assignmentChecking
-assignment checked
-
-
-single_line_comment equalityChecking
-equality checked
-
-single_line_comment greaterOrEqualThanChecking
-greater than or equal checked
-
-single_line_comment lessOrEqualThanChecking
-less than or equal checked
-
-single_line_comment greaterThanChecking
-greater than checked
-
-single_line_comment lessThanChecking
-less than checked
-
-single_line_comment InequalityChecking
-INequality checked
-
-single_line_comment trigonometryOPChecking
-sine checked 
-
-cosine checked 
-
-tan checked 
-
-
-
-
-return value eof 
-
-close braces 
-
+Header files declaration 
+variable declared
+Assign a = 4	
+Assign b = 6	
+Assign c9 = 7	
+value of expression: 4
+value of expression: 6
+value of expression: 7
+Expression JOG matched
+value of expression: 11
+Expression JOG matched
+value of expression: 10
+Expression BIYOG matched
+value of expression: -2
+Expression BIYOG matched
+value of expression: -3
+Expression GUN matched
+value of expression: 54
+Expression GUN matched
+value of expression: 24
+Expression VAG matched
+value of expression: 3
+Expression VAG matched
+value of expression: 1
+Expression POW matched
+value of expression: 16
+Expression POW matched
+value of expression: 4096
+Expression FACT matched
+value of expression: 24
+Expression FACT matched
+value of expression: 24
+Expression greater than or equal (GOE) matched
+value of expression: 1
+Expression greater than or equal (GOE) matched
+value of expression: 0
+Expression less than or equal (LOE) matched
+value of expression: 1
+Expression less than or equal (LOE) matched
+value of expression: 0
+Expression equality (TWO_EQ) matched
+value of expression: 1
+Expression inequality (NOT_EQ) matched
+value of expression: 1
+Expression parentheses matched
+value of expression: 4
+Expression increment (BARAU) matched
+value of expression: 3
+Expression decrement (KOMAU) matched
+value of expression: 2
+Expression MOD matched
+value of expression: 2
+Expression bitwise AND (AND) matched
+value of expression: 2
+Expression bitwise OR (OR) matched
+value of expression: 7
+Expression bitwise NOT (NOT) matched
+value of expression: -4
+Expression logical OR (OTHOBA) matched
+value of expression: 1
+Expression logical AND (EBONG) matched
+value of expression: 0
+Expression XOR (XOR) matched
+value of expression: 6
+Expression parentheses matched
+Expression equality (TWO_EQ) matched
+value of expression: 1
+Expression parentheses matched
+Expression inequality (NOT_EQ) matched
+value of expression: 1
+Expression parentheses matched
+Expression equality (TWO_EQ) matched
+Expression IF matched
+value of expression in IF: 6
+Expression equality (TWO_EQ) matched
+Expression IF matched
+value of expression in IF: 6
+Expression parentheses matched
+Expression inequality (NOT_EQ) matched
+Expression IF matched
+value of expression in IF: 7
+Expression equality (TWO_EQ) matched
+Expression IF_ELSE matched
+value of expression in IF: 4
+Expression equality (TWO_EQ) matched
+Expression IF_ELSE matched
+value of expression in ELSE: 7
+Expression parentheses matched
+Expression equality (TWO_EQ) matched
+Expression IF_ELSE matched
+value of expression in ELSE: 7
+Expression equality (TWO_EQ) matched
+syntax error

@@ -1,106 +1,98 @@
+%{
+	#include<stdio.h>
+	#include<string.h>
+	#include "1807003.tab.h"
+
+%}
+
 alpha [a-zA-Z]
 digit [0-9]
 vognangsho	[0-9]+[.][0-9]+
-var [a-z|A-Z]+[0-9]*
+var [a-z|A-Z]+[_0-9]*
 condition (LT|GT|LOE|GOE|NOT|EQ|TWO_EQ|NOT_EQ)
 condition_key "SHORTO"|"ABAR_SHORTO"|"LAST_SHORTO"
 types "NUMBER"|"DECIMAL"|"ALPHABET"|"DUPLICATE"|"LONG"
 
+single_line_comment [/][/][.]*
+multiple_line_comment [ ]*[<][-][-][a-zA-Z0-9!@#*(){}_+-,.:\|?><\n\t]*[!][-][>]
+
 %%
-"#ONTORVUKTO"[ ]"LT"[ ]{var}".h"[ ]"GT" 		{printf("include header file");}
-
-"SHURU_KORLAM"          {printf("main function start");}
-"#DEF" 		     	 	{printf("#define");}
-
-
-"ALPHABET"				{printf("character type \n");}
-"NUMBER"				{printf("Integer type \n");}
-"DECIMAL"				{printf("float type \n");}
-"DUPLICATE"				{printf("double type \n");}
-"LONG"					{printf("long type \n");}
-
-"SHORTO"				{printf("if condition");}
-"ABAR_SHORTO"			{printf("else if condition");}
-"LAST_SHORTO"			{printf("else condition");}
 
 
 
-"JOKHON"[ ]"LP"[ ]{var}[ ]{condition}[ ]({digit}+|{var})[ ]"RP"																    {printf("while loop matched");}
-"KORO"[ ]"LB"[ ]"RB"[ ]"JOKHON"[ ]"LP"[ ]?{var}[ ]{condition}[ ]({digit}+|{var})[ ]"RP" 										{printf("do while loop matched");}
-"Loop"[ ]"LP"[ ]{var}[ ]"EQ"[ ]{digit}"$"[ ]{var}[ ]{condition}[ ]({digit}+|{var})"$"[ ]{var}[ ]("BARAU"|"KOMAU")[ ]"RP" 	    {printf("for loop matched");}
+"#ONTORVUKTO"[ ]"LT"[ ]{var}".h"[ ]"GT" 		{return HEADER;}
 
-"FUN"[ ]({types}|"KHALI")[ ]{var}[ ]"LP"([ ]{types}[ ]{var})?[ ]"RP"                                                            {printf("function declared");}
+"SHURU_KORLAM"          {return MAIN;}
+"#DEF" 		     	 	{return DEFINE;}
 
-"OPTION"[ ]"LP"[ ]({var}|{digit}+)[ ]"RP"[ ]"LB"				         {printf("switch declared");}				
-("CHOICE"[ ]{digit}+"@"("\n")+"BER_HOU""$""\n")+"RB"           					 {printf("switch case");}
 
-{types}[ ]{var}[ ]"EQ"[ ]{digit}+"$"		{printf("assignment checked");}
-({var}|{digit}+)[ ]"TWO_EQ"[ ]({var}|{digit}+)"$"		{printf("equality checked");}
-({var}|{digit}+)[ ]"NOT_EQ"[ ]({var}|{digit}+)"$"		{printf("INequality checked");}
-({var}|{digit}+)[ ]"GT"[ ]({var}|{digit}+)"$"		{printf("greater than checked");}
-({var}|{digit}+)[ ]"LT"[ ]({var}|{digit}+)"$"		{printf("less than checked");}
-({var}|{digit}+)[ ]"GOE"[ ]({var}|{digit}+)"$"		{printf("greater than or equal checked");}
-({var}|{digit}+)[ ]"LOE"[ ]({var}|{digit}+)"$"		{printf("less than or equal checked");}
+"ALPHABET"				{return CHAR;}
+"NUMBER"				{return INT;}
+"DECIMAL"				{return FLOAT;}
+"DUPLICATE"				{return DOUBLE;}
+"LONG"					{return LONG;}
 
-"GOE"					{printf("greater than or eqal \n");}
-"LOE"					{printf("less than or eqal \n");}
-"TWO_EQ"				{printf("eqality checked \n");}
-"NOT_EQ"				{printf("not equal \n");}
-"GT"					{printf("greater than \n");}
-"LT"					{printf("less than \n");}
-"EQ"					{printf("assignment \n");}
-"LB"					{printf("open braces \n");}
-"RB"					{printf("close braces \n");}
-"LP"					{printf("left parenthesis \n");}
-"RP"					{printf("right parenthesis \n");}
-"$"						{printf(" eof \n");}
-"@"						{printf("colon \n");}
-"DASH"					{printf("hypen \n");}
-"COMA"					{printf("comma \n");}
-"QT"					{printf("double quote \n");} 
-"SLASH_SLASH"			{printf("single_line_comment");}
+"SHORTO"				{return IF;}
+"ABAR_SHORTO"			{return ELSE;}
+"LAST_SHORTO"			{return ELSE_IF;}
 
-"<--"					{printf("comment_start\n");}
-"!->"					{printf("comment_end");}
 
-"NOT"					{printf("bitwise not sign \n");}
-"OR"					{printf("bitwise or sign \n");}
-"AND"					{printf("bitwise and sign \n");}
 
-"JOG"					{printf("addition operator \n");}
-"BIYOG"					{printf("subtraction \n");}
-"GUN"					{printf("multiplication \n");}
-"VAG"					{printf("division \n");}
-"MOD"					{printf("modular \n");}
-"POW"					{printf("power \n");}
-"BARAU"					{printf("increment \n");}
-"KOMAU"					{printf("decrement \n");}
-"OTHOBA"				{printf("logical or \n");}
-"EBONG"					{printf("logical and \n");}
-"XOR"					{printf("xor operator \n");}
+"GOE"					{return GOE;}
+"LOE"					{return LOE;}
+"TWO_EQ"				{return TWO_EQ;}
+"NOT_EQ"				{return NOT_EQ;}
+"GT"					{return GT;}
+"LT"					{return LT;}
+"EQ"					{return EQ;}
+"LB"					{return LB;}
+"RB"					{return RB;}
+"LP"					{return LP;}
+"RP"					{return RP;}
+"$"						{return END;}
+"@"						{return COL;}
+"DASH"					{return DASH;}
+"COMA"					{return COMA;}
+"QT"					{return QT;} 
 
-"KHALI" 				{printf("void \n");}
-"FEROT" 				{printf("return");}
-"CHOICE" 				{printf("case \n");}
-"BER_HOU" 				{printf("break \n");}
-"GO" 					{printf("continue \n");}
-"OPTION" 				{printf("switch \n");}
-"READ" 				    {printf("scanf \n");}
-"DISPLAY" 				{printf("printf \n");}
-"JEKONO" 				{printf("default \n");}
 
-"sn"[ ]"LP"[ ]({var}|{digit}+)[ ]"RP"       {printf("sine checked \n");}
-"kos"[ ]"LP"[ ]({var}|{digit}+)[ ]"RP"       {printf("cosine checked \n");}
-"tng"[ ]"LP"[ ]({var}|{digit}+)[ ]"RP"       {printf("tan checked \n");}
+"NOT"					{return NOT;}
+"OR"					{return OR;}
+"AND"					{return AND;}
 
-{types}[ ]{var}[ ]?(("EQ")?[ ]?{digit}+?)([ ]?("COMA")?{var}[ ]?(("EQ")?[ ]?{digit}+?))*"$"												{printf("variable declared \n");}
-{condition_key}([ ]?"LP"?[ ]?{var}?[ ]?{condition}?[ ]?{digit}+?[ ]?"RP"?)?																{printf("if else key checked \n");}			
-{types}[ ]{var}"["{digit}+"]""$"																											{printf("array declared");}
+"JOG"					{return PLUS;}
+"BIYOG"					{return MINUS;}
+"GUN"					{return MULT;}
+"VAG"					{return DIV;}
+"MOD"					{return MOD;}
+"POW"					{return POW;}
+"FACT"                  {return FACT;}
+"BARAU"					{return INC;}
+"KOMAU"					{return DEC;}
+"OTHOBA"				{return LOGICAL_OR;}
+"EBONG"					{return LOGICAL_AND;}
+"XOR"					{return XOR;}
 
-{digit}					{printf("value");}
-{var}                   {printf("%s",yytext);}
-"\t"					{printf("	");}
-"  "					{printf(" ");} 
+"KHALI" 				{return VOID;}
+"FEROT" 				{return RETURN;}
+"CHOICE" 				{return CASE;}
+"BER_HOU" 				{return BREAK;}
+"GO" 					{return CONTINUE;}
+"OPTION" 				{return SWITCH;}
+"READ" 				    {return SCANF;}
+"DISPLAY" 				{return PRINTF;}
+"JEKONO" 				{return DEFAULT;}
+
+
+{digit}					{ yylval.number = atoi(yytext);
+							return NUM;}
+{var}                   { yylval.string = strdup(yytext);
+							return VAR;}
+[ \t\n]*
+.						{printf("%s --> invalid\n",yytext);}
+
+{single_line_comment} {printf("single line comment\n");}
+{multiple_line_comment} {printf("multiple_line_comment\n");}
 %%
 
 int yywrap()
@@ -114,7 +106,7 @@ int main()
      freopen("input.txt","r",stdin);
 	 freopen("output.txt","w",stdout);
 
-	  yylex();
+	 yyparse();
     
 	return 0;
 }

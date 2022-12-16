@@ -1,82 +1,108 @@
 #ONTORVUKTO LT stdio.h GT
 
-SLASH_SLASH voidFunctionWithoutParameter
-FUN KHALI func1 LP RP
-
-SLASH_SLASH voidFunctionWithParameter
-FUN KHALI func2 LP NUMBER a RP
-
-SLASH_SLASH DecimalTypeFunctionWithParameter
-FUN DECIMAL func3 LP NUMBER a RP
-
-SLASH_SLASH NumberTypeFunctionWithoutParameter
-FUN NUMBER func4 LP RP
-
-
-
-FUN DECIMAL d LP NUMBER a RP
-
 SHURU_KORLAM
 LB
+NUMBER a COMA b COMA c9 $
+a EQ 4 $
+b EQ 6 $
+c9 EQ 7 $
+a $
+b $
+c9 $
 
-SLASH_SLASH checkingVariableDeclaration
-NUMBER a EQ 5 COMA b EQ 6$
+4 JOG 7 $
+a JOG b $
+4 BIYOG 6 $
+a BIYOG c9 $
+9 GUN 6 $
+a GUN b $
+9 VAG 3 $
+b VAG a $
+2 POW 4 $
+a POW b $ 
+4 FACT $ 
+a FACT $
 
-SLASH_SLASH logicalConditionChecking
-SHORTO LP i EQ 5 RP
-ABAR_SHORTO LP i EQ 5 RP
-LAST_SHORTO 
+4 GOE 3 $
+3 GOE 4 $
+3 LOE 4 $
+4 LOE 3 $
+3 TWO_EQ 3 $
+3 NOT_EQ 4 $
+LP a RP $
+2 BARAU $
+3 KOMAU $
+7 MOD 5 $ 
+3 AND 2 $
+3 OR 5 $
+3 NOT $
+2 OTHOBA 3 $
+3 EBONG 0 $
+5 XOR 3 $
 
-SLASH_SLASH checkingArrayDeclaration
-NUMBER a[100]$
-ALPHABET abc[15]$
+LP a RP TWO_EQ 4 $
+LP a RP NOT_EQ 5 $
 
-SLASH_SLASH matchingLoop
-Loop LP i EQ 0$ i LOE n$ i BARAU RP
+SHORTO LP LP a RP TWO_EQ 4 RP 
+LB 
+    b $ 
+RB 
 
-SLASH_SLASH matchingWhile
-JOKHON LP i LOE n RP
+SHORTO LP 4 TWO_EQ 4 RP 
+LB 
+    b $ 
+RB 
 
-<--multiLine 
-comment
-!->
+SHORTO LP LP a RP NOT_EQ 5 RP
+    LB 
+      c9 $ 
+    RB 
 
-SLASH_SLASH switchChecked
-OPTION LP 5 RP LB
-CHOICE 1@
-BER_HOU$
-CHOICE 2@
-BER_HOU$
-RB
+SHORTO LP 2 TWO_EQ 2 RP 
+    LB 
+    a $ 
+    RB 
+ABAR_SHORTO     
+    LB 
+      c9 $ 
+    RB 
 
-SLASH_SLASH assignmentChecking
-NUMBER a EQ 56$
-
-
-SLASH_SLASH equalityChecking
-a TWO_EQ b$
-
-SLASH_SLASH greaterOrEqualThanChecking
-a GOE c$
-
-SLASH_SLASH lessOrEqualThanChecking
-a LOE c$
-
-SLASH_SLASH greaterThanChecking
-a GT c$
-
-SLASH_SLASH lessThanChecking
-a LT c$
-
-SLASH_SLASH InequalityChecking
-a NOT_EQ c$
-
-SLASH_SLASH trigonometryOPChecking
-sn LP x RP
-kos LP y RP
-tng LP 56 RP
-
+SHORTO LP 2 TWO_EQ 3 RP 
+    LB 
+        a $ 
+    RB 
+ABAR_SHORTO 
+    LB 
+        c9 $ 
+    RB 
 
 
-FEROT  0$
+SHORTO LP LP a RP TWO_EQ 3 RP 
+    LB 
+        a $ 
+    RB 
+ABAR_SHORTO 
+    LB 
+        c9 $ 
+    RB 
+
+SHORTO LP 2 TWO_EQ 3 RP 
+    LB
+        SHORTO LP 4 TWO_EQ 3 RP 
+            LB 
+                a $ 
+            RB 
+        ABAR_SHORTO 
+            LB 
+                c9 $ 
+            RB 
+        b $
+    RB
+ABAR_SHORTO 
+    LB 
+        c9 $ 
+    RB 
+
+$
+FEROT
 RB
