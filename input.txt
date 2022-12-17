@@ -123,6 +123,7 @@ LOOP LP 2 @ 5 @ 2 BARAU RP
     LB 
         6 GUN 7 $ 
     RB
+    
 
 LOOP LP 5 @ 2 @ 2 KOMAU RP 
     LB 
@@ -143,6 +144,9 @@ FUNC abc @ NUMBER LP RP
        5 JOG 7 $
     RB
 
+FUNC abc LP RP $
+
+
 OPTION LP a RP
     LB
     CHOICE 1 @
@@ -160,6 +164,18 @@ OPTION LP a RP
 SN LP 30 RP $
 TNG LP 30 RP $
 KOS LP 30 RP $
+
+DISPLAY LP a JOG 30 RP $
+
+NUMBER xy $
+
+READ LP xy COMA 7 RP $
+
+DISPLAY LP xy RP $
+
+LOG10 LP 30 RP $
+
+
 
 $
 FEROT

@@ -6,9 +6,10 @@
     	char *var;
     	int num;
 	} save;
-    save sv[1000],sm[1000];
-	int cnt1=1,cnt2=1,val,cnt3=1,cnt4=0,case_no=0,default_case=0;
+    save sv[1000],sm[1000],func_sv[1000],func_sm[1000];
+	int cnt1=1,cnt2=1,cnt3=1,cnt4=1,cnt5=1,case_no=0,default_case=0;
 	float x,y;
+	char* p;
 	void insert_var (save *p, char *s, int n);
 	void insert_var2 (save *p, char *s, int n);
 
@@ -24,7 +25,7 @@
 %start code
 %token <number> NUM
 %token <string> VAR
-%token <string> HEADER MAIN DEFINE CHAR INT FLOAT DOUBLE LONG IF ELSE ELSE_IF GOE LOE TWO_EQ NOT_EQ GT LT EQ LB RB LP RP END COL DASH COMA QT NOT OR AND PLUS MINUS MULT DIV MOD POW FACT INC DEC LOGICAL_OR LOGICAL_AND XOR VOID RETURN CASE BREAK CONTINUE SWITCH SCANF PRINTF DEFAULT FOR WHILE FUNC SIN COS TAN
+%token <string> HEADER MAIN DEFINE CHAR INT FLOAT DOUBLE LONG IF ELSE ELSE_IF GOE LOE TWO_EQ NOT_EQ GT LT EQ LB RB LP RP END COL DASH COMA QT NOT OR AND PLUS MINUS MULT DIV MOD POW FACT INC DEC LOGICAL_OR LOGICAL_AND XOR VOID RETURN CASE BREAK CONTINUE SWITCH SCAN PRINT DEFAULT FOR WHILE FUNC SIN COS TAN LOG10
 %type <string> cstatement
 %type <number> expression
 %nonassoc IFX
@@ -52,7 +53,7 @@ code:
 statement: MAIN LB main_code RETURN RB {printf("main declaration\n");}
          ;
 main_code:
-		 |s_declaration
+		 |main_code s_declaration
 		 |main_code cstatement
 		 ;
 s_declaration: TYPE ID1 END {printf("variable declared\n");}
@@ -90,9 +91,9 @@ ID1: ID1 COMA VAR {
 			}
      ;	
 
-cstatement: END	
-            				  
-		    | expression END 	{printf("value of expression: %d\n",($1));}	
+cstatement: END		  
+		    
+			| expression END 	{printf("value of expression: %d\n",($1));}	
 			
 			| VAR EQ expression END {
 								
@@ -153,7 +154,8 @@ cstatement: END
 										
 								   }
 
-			| IF LP expression RP LB expression END RB ELSE_IF LP expression RP LB expression END RB ELSE LB expression END RB {
+			| IF LP expression RP LB expression END RB ELSE_IF LP expression RP LB expression END RB ELSE LB expression END RB 
+			                       {
 										printf("Expression IF_(ELSE_IF)_ELSE matched\n");
 										if($3)
 										{
@@ -167,9 +169,9 @@ cstatement: END
 										{
 											printf("value of expression in ELSE: %d\n",$19);
 										}
-								   }
-			| FOR LP NUM COL NUM COL NUM INC RP LB expression END RB {
-														printf("Loop increment matched\n");
+			                        }
+	        | FOR LP NUM COL NUM COL NUM INC RP LB expression END RB {
+														printf("Loop increment matched 2\n");
 													
 													    int i = 0;
 														for(i = $3; i<=$5; i += $7)
@@ -179,6 +181,7 @@ cstatement: END
 														printf("\n");
 														printf("value of the expression: %d\n",$11);
 	 								                 }
+		   
 			| FOR LP NUM COL NUM COL NUM DEC RP LB expression END RB {
 														printf("Loop decrement matched\n");
 													
@@ -220,14 +223,69 @@ cstatement: END
 	                                                    }	
 			
 
-			| FUNC define
+			| FUNC define                  {printf("Function matched\n");}
+
+			| FUNC VAR LP RP END {
+				                     $$ = func_sm[for_key2($2)].num;
+				                     printf("function (%s) is called & value is %d\n",$2,$$);
+								  }
+
 			| SWITCH LP case RP LB code RB {printf("SWITCH case matched\n");}
+		   
+		    | PRINT LP expression RP END {
+				                            printf("printf matched\n");
+											printf("%d\n",$3);
+										 }
+			
+		    | SCAN LP VAR COMA NUM RP END {      printf("scanf matched\n");
+												if(for_key($3)){
+													
+													int i = for_key2($3);
+													if (!i){
+														insert_var(&sm[cnt3], $3, $5);
+														cnt3++;
+													}
+													sm[i].num = $5;
+												}
+												else {
+													printf("%s not declared yet\n",$3);
+												}		
+												
+										  
+										}
 			;
-define: COL TYPE LP RP LB cstatement RB
+
+
+           
+define: VAR COL TYPE LP RP LB cstatement RB
 									   {
-										 printf("Function declared \n");
-										 printf("value of expression: %d\n",$6);
+
+										    if(func_for_key($1))
+											{
+												printf("%s is already declared\n", $1 );
+											}
+											else
+											{
+												insert_var2(&func_sv[cnt4],$1, cnt4);
+												cnt4++;
+
+												if(func_for_key($1)){
+																		
+																		int i = func_for_key2($1);
+																		if (!i){
+																			insert_var(&func_sm[cnt5], $1, $7);
+																			cnt5++;
+																		}
+																		func_sm[i].num = $7;
+																	}
+												printf("Function declared %d\n",$7);
+										        
+											}
+
+										 
 									   }
+	  
+
 case : 
 	  expression
 	  			{
@@ -334,10 +392,12 @@ expression: NUM 		{$$ = $1;}
 											printf("Expression logical OR (OTHOBA) matched\n");
 											$$ = ($1 || $3); 
 									     }
+
 		  | expression LOGICAL_AND expression {
 											printf("Expression logical AND (EBONG) matched\n");
 											$$ = ($1 && $3); 
 									     }
+
 		  | expression XOR expression {
 											printf("Expression XOR (XOR) matched\n");
 											$$ = ($1 ^ $3); 
@@ -350,24 +410,34 @@ expression: NUM 		{$$ = $1;}
 		  | expression DEC         { $$ = $2-1; printf("Expression decrement (KOMAU) matched\n");}
 		   
           | SIN expression         {
-			                        $$=$2;
-									x=$2*(3.142/180);
-									y=sin(x);
-									printf("Value of sin(%d) = %.2lf\n",$2,y);
+										$$=$2;
+										x=$2*(3.142/180);
+										y=sin(x);
+										printf("Value of sin(%d) = %.2lf\n",$2,y);
 									}
-		  | TAN expression         {
-			                        $$=$2;
-									x=$2*(3.142/180);
-									y=tan(x);
-									printf("Value of tan(%d) = %.2lf\n",$2,y);
-									}
-		  | COS expression         {
-												$$=$2;
-												x=$2*(3.142/180);
-												y=cos(x);
-												printf("Value of cos(%d) = %.2lf\n",$2,y);
-												}
 
+		  | TAN expression         {
+										$$=$2;
+										x=$2*(3.142/180);
+										y=tan(x);
+										printf("Value of tan(%d) = %.2lf\n",$2,y);
+									
+									}
+
+		  | COS expression         {
+										$$=$2;
+										x=$2*(3.142/180);
+										y=cos(x);
+										printf("Value of cos(%d) = %.2lf\n",$2,y);
+									}
+
+		  | LOG10 LP NUM RP END {
+			                            printf("LOG matched\n");
+										printf("Value of Log10(%d) is %.2lf\n",$3,(log($3*1.0)/log(10.0))); 
+										$$=(log($3*1.0)/log(10.0));
+												
+								    	}
+		  ;
 %%
 
 void insert_var(save *p, char *s, int n)
@@ -387,6 +457,20 @@ int for_key(char *key)
     }
     return 0;
 }
+
+int func_for_key(char *key)
+{
+    int i = 1;
+    char *name = func_sv[i].var;
+    while (name) {
+        if (strcmp(name, key) == 0)
+            return func_sv[i].num;
+        name = func_sv[++i].var;
+    }
+    return 0;
+}
+
+
 
 void insert_var2 (save *p, char *s, int n)
 {
@@ -412,7 +496,22 @@ int for_key2(char *key)
     return 0;
 }
 
-
+int func_for_key2(char *key)
+{
+	
+    int i = 1;
+    char *name = func_sm[i].var;
+	
+    while (name) {
+        if (strcmp(name, key) == 0)
+		{
+           return i;
+		}
+           
+        name = func_sm[++i].var;
+    }
+    return 0;
+}
 
 yyerror(char *s){
 	printf( "%s\n", s);

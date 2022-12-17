@@ -98,7 +98,7 @@ Expression equality (TWO_EQ) matched
 Expression IF_(ELSE_IF)_ELSE matched
 value of expression in ELIF: 6
 Expression GUN matched
-Loop increment matched
+Loop increment matched 2
 2 4 
 value of the expression: 42
 Expression GUN matched
@@ -113,8 +113,9 @@ While LOOP: 6 4 2
 value of the expression: 21
 Expression JOG matched
 value of expression: 12
-Function declared 
-value of expression: 12
+Function declared 12
+Function matched
+function (abc) is called & value is 12
 Expression JOG matched
 Expression JOG matched
 Default block expression value: 6
@@ -128,4 +129,14 @@ value of expression: 30
 Expression parentheses matched
 Value of cos(30) = 0.87
 value of expression: 30
+Expression JOG matched
+printf matched
+34
+variable declared
+scanf matched
+printf matched
+7
+LOG matched
+Value of Log10(30) is 1.48
+value of expression: 1
 main declaration

@@ -12,7 +12,6 @@ var [a-z|A-Z]+[_0-9]*
 condition (LT|GT|LOE|GOE|NOT|EQ|TWO_EQ|NOT_EQ)
 condition_key "SHORTO"|"ABAR_SHORTO"|"LAST_SHORTO"
 types "NUMBER"|"DECIMAL"|"ALPHABET"|"DUPLICATE"|"LONG"
-
 single_line_comment [/][/][.]*
 multiple_line_comment [ ]*[<][-][-][a-zA-Z0-9!@#*(){}_+-,.:\|?><\n\t]*[!][-][>]
 
@@ -76,6 +75,7 @@ multiple_line_comment [ ]*[<][-][-][a-zA-Z0-9!@#*(){}_+-,.:\|?><\n\t]*[!][-][>]
 "SN"                    {return SIN;}
 "KOS"                   {return COS;}
 "TNG"                   {return TAN;}
+"LOG10"                 {return LOG10;}
 
 "KHALI" 				{return VOID;}
 "FEROT" 				{return RETURN;}
@@ -83,16 +83,17 @@ multiple_line_comment [ ]*[<][-][-][a-zA-Z0-9!@#*(){}_+-,.:\|?><\n\t]*[!][-][>]
 "BER_HOU" 				{return BREAK;}
 "GO" 					{return CONTINUE;}
 "OPTION" 				{return SWITCH;}
-"READ" 				    {return SCANF;}
-"DISPLAY" 				{return PRINTF;}
+"READ" 				    {return SCAN;}
+"DISPLAY" 				{return PRINT;}
 "JEKONO" 				{return DEFAULT;}
-
+"FUNC"	    			{return FUNC;}
 
 {digit}+				{ yylval.number = atoi(yytext);
 							return NUM;}
+
 {var}                   { yylval.string = strdup(yytext);
 							return VAR;}
-"FUNC "[A-Za-z]+	    {return FUNC;}
+
 [ \t\n]*
 .						{printf("%s --> invalid\n",yytext);}
 

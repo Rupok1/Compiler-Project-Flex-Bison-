@@ -89,8 +89,8 @@
      BREAK = 305,
      CONTINUE = 306,
      SWITCH = 307,
-     SCANF = 308,
-     PRINTF = 309,
+     SCAN = 308,
+     PRINT = 309,
      DEFAULT = 310,
      FOR = 311,
      WHILE = 312,
@@ -98,8 +98,9 @@
      SIN = 314,
      COS = 315,
      TAN = 316,
-     IFX = 317,
-     ELIFX = 318
+     LOG10 = 317,
+     IFX = 318,
+     ELIFX = 319
    };
 #endif
 
@@ -110,7 +111,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 19 "1807003.y"
+#line 20 "1807003.y"
 
         int number;
         char *string;
@@ -118,7 +119,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 122 "1807003.tab.h"
+#line 123 "1807003.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
