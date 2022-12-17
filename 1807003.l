@@ -73,6 +73,9 @@ multiple_line_comment [ ]*[<][-][-][a-zA-Z0-9!@#*(){}_+-,.:\|?><\n\t]*[!][-][>]
 "OTHOBA"				{return LOGICAL_OR;}
 "EBONG"					{return LOGICAL_AND;}
 "XOR"					{return XOR;}
+"SN"                    {return SIN;}
+"KOS"                   {return COS;}
+"TNG"                   {return TAN;}
 
 "KHALI" 				{return VOID;}
 "FEROT" 				{return RETURN;}
@@ -85,7 +88,7 @@ multiple_line_comment [ ]*[<][-][-][a-zA-Z0-9!@#*(){}_+-,.:\|?><\n\t]*[!][-][>]
 "JEKONO" 				{return DEFAULT;}
 
 
-{digit}					{ yylval.number = atoi(yytext);
+{digit}+				{ yylval.number = atoi(yytext);
 							return NUM;}
 {var}                   { yylval.string = strdup(yytext);
 							return VAR;}

@@ -7,7 +7,8 @@
     	int num;
 	} save;
     save sv[1000],sm[1000];
-	int cnt1=1,cnt2=1,val,cnt3=1,cnt4=0;
+	int cnt1=1,cnt2=1,val,cnt3=1,cnt4=0,case_no=0,default_case=0;
+	float x,y;
 	void insert_var (save *p, char *s, int n);
 	void insert_var2 (save *p, char *s, int n);
 
@@ -23,7 +24,7 @@
 %start code
 %token <number> NUM
 %token <string> VAR
-%token <string> HEADER MAIN DEFINE CHAR INT FLOAT DOUBLE LONG IF ELSE ELSE_IF GOE LOE TWO_EQ NOT_EQ GT LT EQ LB RB LP RP END COL DASH COMA QT NOT OR AND PLUS MINUS MULT DIV MOD POW FACT INC DEC LOGICAL_OR LOGICAL_AND XOR VOID RETURN CASE BREAK CONTINUE SWITCH SCANF PRINTF DEFAULT FOR WHILE FUNC
+%token <string> HEADER MAIN DEFINE CHAR INT FLOAT DOUBLE LONG IF ELSE ELSE_IF GOE LOE TWO_EQ NOT_EQ GT LT EQ LB RB LP RP END COL DASH COMA QT NOT OR AND PLUS MINUS MULT DIV MOD POW FACT INC DEC LOGICAL_OR LOGICAL_AND XOR VOID RETURN CASE BREAK CONTINUE SWITCH SCANF PRINTF DEFAULT FOR WHILE FUNC SIN COS TAN
 %type <string> cstatement
 %type <number> expression
 %nonassoc IFX
@@ -220,17 +221,41 @@ cstatement: END
 			
 
 			| FUNC define
-			
+			| SWITCH LP case RP LB code RB {printf("SWITCH case matched\n");}
 			;
 define: COL TYPE LP RP LB cstatement RB
 									   {
 										 printf("Function declared \n");
 										 printf("value of expression: %d\n",$6);
 									   }
+case : 
+	  expression
+	  			{
+					default_case = 0;
+					case_no = $1;
+				}
+	  ;
+code : code CASE NUM COL expression END BREAK END {
+	                                if(case_no == $3)
+									{
+										printf("case block expression value: %d\n",$5);
+										default_case = 1;
+									}
+
+                                  }
+	  | code DEFAULT COL expression END BREAK END{
+		                              if(default_case == 0)
+									  {
+										default_case = 1;
+										printf("Default block expression value: %d\n",$4);
+									  }
+
+	  								} 
+	  ;
 			
 
 expression: NUM 		{$$ = $1;}
-		 
+		  
 		  | VAR 		{ $$ = sm[for_key2($1)].num;}
 		
 	      | expression PLUS expression	{   $$ = $1 + $3; printf("Expression JOG matched\n");}
@@ -323,8 +348,25 @@ expression: NUM 		{$$ = $1;}
           | expression INC         { $$ = $2+1; printf("Expression increment (BARAU) matched\n");}
           
 		  | expression DEC         { $$ = $2-1; printf("Expression decrement (KOMAU) matched\n");}
-
-
+		   
+          | SIN expression         {
+			                        $$=$2;
+									x=$2*(3.142/180);
+									y=sin(x);
+									printf("Value of sin(%d) = %.2lf\n",$2,y);
+									}
+		  | TAN expression         {
+			                        $$=$2;
+									x=$2*(3.142/180);
+									y=tan(x);
+									printf("Value of tan(%d) = %.2lf\n",$2,y);
+									}
+		  | COS expression         {
+												$$=$2;
+												x=$2*(3.142/180);
+												y=cos(x);
+												printf("Value of cos(%d) = %.2lf\n",$2,y);
+												}
 
 %%
 

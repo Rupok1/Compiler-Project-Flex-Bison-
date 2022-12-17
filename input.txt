@@ -143,6 +143,24 @@ FUNC abc @ NUMBER LP RP
        5 JOG 7 $
     RB
 
+OPTION LP a RP
+    LB
+    CHOICE 1 @
+             2 JOG 3 $
+             BER_HOU $
+    CHOICE 2 @
+             3 JOG 7 $
+             BER_HOU $
+    JEKONO @
+           b $
+           BER_HOU $
+          
+    RB
+
+SN LP 30 RP $
+TNG LP 30 RP $
+KOS LP 30 RP $
+
 $
 FEROT
 RB

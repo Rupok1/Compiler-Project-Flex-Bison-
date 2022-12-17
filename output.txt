@@ -115,4 +115,17 @@ Expression JOG matched
 value of expression: 12
 Function declared 
 value of expression: 12
+Expression JOG matched
+Expression JOG matched
+Default block expression value: 6
+SWITCH case matched
+Expression parentheses matched
+Value of sin(30) = 0.50
+value of expression: 30
+Expression parentheses matched
+Value of tan(30) = 0.58
+value of expression: 30
+Expression parentheses matched
+Value of cos(30) = 0.87
+value of expression: 30
 main declaration

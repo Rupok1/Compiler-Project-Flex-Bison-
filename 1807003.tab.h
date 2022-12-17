@@ -95,8 +95,11 @@
      FOR = 311,
      WHILE = 312,
      FUNC = 313,
-     IFX = 314,
-     ELIFX = 315
+     SIN = 314,
+     COS = 315,
+     TAN = 316,
+     IFX = 317,
+     ELIFX = 318
    };
 #endif
 
@@ -107,7 +110,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 18 "1807003.y"
+#line 19 "1807003.y"
 
         int number;
         char *string;
@@ -115,7 +118,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 119 "1807003.tab.h"
+#line 122 "1807003.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
