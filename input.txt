@@ -86,6 +86,7 @@ ABAR_SHORTO
         c9 $ 
     RB 
 
+
 SHORTO LP 2 TWO_EQ 3 RP 
     LB
         SHORTO LP 4 TWO_EQ 3 RP 
@@ -102,6 +103,45 @@ ABAR_SHORTO
     LB 
         c9 $ 
     RB 
+
+
+SHORTO LP 2 TWO_EQ 3 RP 
+    LB 
+        a $ 
+    RB 
+LAST_SHORTO LP 3 TWO_EQ 3 RP
+    LB
+       b $
+    RB
+ABAR_SHORTO 
+    LB 
+        c9 $ 
+    RB 
+
+
+LOOP LP 2 @ 5 @ 2 BARAU RP 
+    LB 
+        6 GUN 7 $ 
+    RB
+
+LOOP LP 5 @ 2 @ 2 KOMAU RP 
+    LB 
+        7 GUN 7 $ 
+    RB
+
+JOKHON LP 2 LOE 6 @ 2 BARAU RP
+    LB
+        3 GUN 6 $
+    RB
+JOKHON LP 2 LOE 6 @ 2 KOMAU RP
+    LB
+        3 GUN 7 $
+    RB
+
+FUNC abc @ NUMBER LP RP 
+    LB
+       5 JOG 7 $
+    RB
 
 $
 FEROT

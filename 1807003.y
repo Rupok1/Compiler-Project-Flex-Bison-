@@ -23,7 +23,7 @@
 %start code
 %token <number> NUM
 %token <string> VAR
-%token <string> HEADER MAIN DEFINE CHAR INT FLOAT DOUBLE LONG IF ELSE ELSE_IF GOE LOE TWO_EQ NOT_EQ GT LT EQ LB RB LP RP END COL DASH COMA QT NOT OR AND PLUS MINUS MULT DIV MOD POW FACT INC DEC LOGICAL_OR LOGICAL_AND XOR VOID RETURN CASE BREAK CONTINUE SWITCH SCANF PRINTF DEFAULT
+%token <string> HEADER MAIN DEFINE CHAR INT FLOAT DOUBLE LONG IF ELSE ELSE_IF GOE LOE TWO_EQ NOT_EQ GT LT EQ LB RB LP RP END COL DASH COMA QT NOT OR AND PLUS MINUS MULT DIV MOD POW FACT INC DEC LOGICAL_OR LOGICAL_AND XOR VOID RETURN CASE BREAK CONTINUE SWITCH SCANF PRINTF DEFAULT FOR WHILE FUNC
 %type <string> cstatement
 %type <number> expression
 %nonassoc IFX
@@ -149,8 +149,85 @@ cstatement: END
 										{
 											printf("value of expression in else: %d\n",$24);
 										}
+										
 								   }
 
+			| IF LP expression RP LB expression END RB ELSE_IF LP expression RP LB expression END RB ELSE LB expression END RB {
+										printf("Expression IF_(ELSE_IF)_ELSE matched\n");
+										if($3)
+										{
+											printf("value of expression in IF: %d\n",$6);
+										}
+										else if($11)
+										{
+											printf("value of expression in ELIF: %d\n",$14);
+										}
+										else
+										{
+											printf("value of expression in ELSE: %d\n",$19);
+										}
+								   }
+			| FOR LP NUM COL NUM COL NUM INC RP LB expression END RB {
+														printf("Loop increment matched\n");
+													
+													    int i = 0;
+														for(i = $3; i<=$5; i += $7)
+														{
+															printf("%d ",i);
+														}
+														printf("\n");
+														printf("value of the expression: %d\n",$11);
+	 								                 }
+			| FOR LP NUM COL NUM COL NUM DEC RP LB expression END RB {
+														printf("Loop decrement matched\n");
+													
+													    int i = 0;
+														for(i = $3; i>=$5; i -= $7)
+														{
+															printf("%d ",i);
+														}
+														printf("\n");
+														printf("value of the expression: %d\n",$11);
+	 								                 }
+
+			| WHILE LP NUM LOE NUM COL expression INC RP LB expression END RB {
+														
+															int i = $3;
+															printf("While LOOP: ");
+															while(i <= $5)
+															{
+																printf("%d ",i);
+																i = i + $7;
+															}
+															printf("\n");
+															printf("value of the expression: %d\n",$11);
+
+	                                                    }	
+
+			| WHILE LP NUM LOE NUM COL expression DEC RP LB expression END RB {
+														
+															int i = $5;
+															printf("While LOOP: ");
+															while(i >= 1)
+															{
+																printf("%d ",i);
+																i = i - $7;
+															}
+															printf("\n");
+															printf("value of the expression: %d\n",$11);
+
+	                                                    }	
+			
+
+			| FUNC define
+			
+			;
+define: COL TYPE LP RP LB cstatement RB
+									   {
+										 printf("Function declared \n");
+										 printf("value of expression: %d\n",$6);
+									   }
+			
 
 expression: NUM 		{$$ = $1;}
 		 

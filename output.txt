@@ -90,4 +90,29 @@ Expression equality (TWO_EQ) matched
 Expression IF_ELSE matched
 value of expression in ELSE: 7
 Expression equality (TWO_EQ) matched
-syntax error
+Expression equality (TWO_EQ) matched
+Expression nested IF_ELSE matched
+value of expression in else: 7
+Expression equality (TWO_EQ) matched
+Expression equality (TWO_EQ) matched
+Expression IF_(ELSE_IF)_ELSE matched
+value of expression in ELIF: 6
+Expression GUN matched
+Loop increment matched
+2 4 
+value of the expression: 42
+Expression GUN matched
+Loop decrement matched
+5 3 
+value of the expression: 49
+Expression GUN matched
+While LOOP: 2 4 6 
+value of the expression: 18
+Expression GUN matched
+While LOOP: 6 4 2 
+value of the expression: 21
+Expression JOG matched
+value of expression: 12
+Function declared 
+value of expression: 12
+main declaration

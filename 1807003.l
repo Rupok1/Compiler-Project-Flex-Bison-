@@ -36,7 +36,8 @@ multiple_line_comment [ ]*[<][-][-][a-zA-Z0-9!@#*(){}_+-,.:\|?><\n\t]*[!][-][>]
 "ABAR_SHORTO"			{return ELSE;}
 "LAST_SHORTO"			{return ELSE_IF;}
 
-
+"LOOP"					{return FOR;}
+"JOKHON"				{return WHILE;}
 
 "GOE"					{return GOE;}
 "LOE"					{return LOE;}
@@ -88,6 +89,7 @@ multiple_line_comment [ ]*[<][-][-][a-zA-Z0-9!@#*(){}_+-,.:\|?><\n\t]*[!][-][>]
 							return NUM;}
 {var}                   { yylval.string = strdup(yytext);
 							return VAR;}
+"FUNC "[A-Za-z]+	    {return FUNC;}
 [ \t\n]*
 .						{printf("%s --> invalid\n",yytext);}
 

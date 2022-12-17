@@ -92,8 +92,11 @@
      SCANF = 308,
      PRINTF = 309,
      DEFAULT = 310,
-     IFX = 311,
-     ELIFX = 312
+     FOR = 311,
+     WHILE = 312,
+     FUNC = 313,
+     IFX = 314,
+     ELIFX = 315
    };
 #endif
 
@@ -112,7 +115,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 116 "1807003.tab.h"
+#line 119 "1807003.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
